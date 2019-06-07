@@ -3,7 +3,10 @@ const router = express.Router();
 const errorHandler = require('../../Middleware/error');
 
 const MovieReadCtrl = require('../../Controller/Movie/MovieReadController');
+const MovieCreateCtrl = require('../../Controller/Movie/MovieCreateController');
 
-router.post('/find', errorHandler.catchAsyncErrors(MovieReadCtrl.getMovie));
+router.get('/all', errorHandler.catchAsyncErrors(MovieReadCtrl.getAllMovies));
+
+router.post('/find', errorHandler.catchAsyncErrors(MovieCreateCtrl.getMovie));
 
 module.exports = router;

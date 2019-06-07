@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Welcome in MoviesApp</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Movies RESTful API</h1>
+    <h2>Search movie in OMDb API and add it to MoviesApp database.</h2>
+    <form method="POST" action="/api/movies/find">
+        <div class="form__div">
+            <label>Title</label>
+            <input type="text" name="title" placeholder="example: Snatch" />
+        </div>
+        <div class="form__div">
+            <label>OMDB ID</label>
+            <input type="text" name="omdbId" placeholder="example: tt0208092" />
+        </div>
+        <button type="submit">Send</button>
+    </form>
+    <p>METHOD - POST</p>
+    <p>(if you pass both: title and OMDB ID, OMDB IS will be overriding)</p>
+  </body>
+</html>

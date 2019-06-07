@@ -1,0 +1,30 @@
+{
+  "name": "checkmovies",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2bigniew/checkmovies.git"
+  },
+  "author": "Zbigniew Stasiak",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/2bigniew/checkmovies/issues"
+  },
+  "homepage": "https://github.com/2bigniew/checkmovies#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "dotenv": "^8.0.0",
+    "ejs": "^2.6.1",
+    "express": "^4.17.1",
+    "helmet": "^3.18.0",
+    "pg": "^7.11.0",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^5.8.7",
+    "validator": "^11.0.0"
+  }
+}

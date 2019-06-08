@@ -7,8 +7,27 @@
   </head>
   <body>
     <h1>Movies RESTful API</h1>
-    <h2>Search movie in OMDb API and add it to MoviesApp database.</h2>
-    <form method="POST" action="/api/movies/find">
+    <ul>
+        <li><a href="#first">1. Search movie in OMDb API and add it to MoviesApp database.</a></li>
+        <li><a href="#second">2. Get all movies from database.</a></li>
+        <li><a href="#third">3. Add comment to movie in database.</a></li>
+        <li><a href="#fourth">4. Get all comments from database.</a></li>
+    </ul>
+    <h2 id="first">1. Search movie in OMDb API and add it to MoviesApp database.</h2>
+    <p>METHOD - POST</p>
+    <p>URL: /api/movies</p>
+    <table>
+        <thead>
+            <tr><th>Parameters</th><th>Valid options</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>title</td><td>alphanumeric</td><td>Movie title</td></tr>
+            <tr><td>imdb_id</td><td>alphanumeric</td><td>A valid IMDb ID (e.g. tt1285016)</td></tr>
+        </tbody>
+    </table>
+    <p>(if you pass both: title and IMDB ID, IMDB IS will be overriding)</p>
+    <p>Try it!</p>
+    <form method="POST" action="/api/movies">
         <div class="form__div">
             <label>Title</label>
             <input type="text" name="title" placeholder="example: Snatch" />
@@ -19,7 +38,44 @@
         </div>
         <button type="submit">Send</button>
     </form>
+    <hr>
+    <h2 id="second">2. Get all movies from database.</h2>
+    <p>METHOD - GET</p>
+    <p>URL: /api/movies</p>
+    <hr>
+    <h2 id="third">3. Add comment to movie in database</h2>
     <p>METHOD - POST</p>
+    <p>URL: /api/comments</p>
     <p>(if you pass both: title and OMDB ID, OMDB IS will be overriding)</p>
+    <table>
+        <thead>
+            <tr><th>Parameters</th><th>Valid options</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>title</td><td>alphanumeric</td><td>Movie title</td></tr>
+            <tr><td>imdb_id</td><td>alphanumeric</td><td>A valid IMDb ID (e.g. tt1285016)</td></tr>
+            <tr><td>comment</td><td>--</td><td>Comment about movie (e.g. "that movie is awsome!")</td></tr>
+        </tbody>
+    </table>
+    <form method="POST" action="/api/comments">
+        <div class="form__div">
+            <label>Title</label>
+            <input type="text" name="title" placeholder="example: Snatch" />
+        </div>
+        <div class="form__div">
+            <label>OMDB ID</label>
+            <input type="text" name="omdbId" placeholder="example: tt0208092" />
+        </div>
+        <div class="form__div">
+            <label>Comment</label>
+            <input type="textarea" name="comment" placeholder="What you think about this movie?" />
+        </div>
+
+        <button type="submit">Send</button>
+    </form>
+    <hr>
+    <h2 id="fourth">4. Get all comments from database.</h2>
+    <p>METHOD - GET</p>
+    <p>URL: /api/comments</p>
   </body>
 </html>

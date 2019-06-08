@@ -10,6 +10,7 @@ const con = require('./Database/Connection/Connection.js');
 const errorHandler = require('./Api/Middleware/error');
 
 const MoviesRouter = require('./Api/Router/Movie/MovieRouter');
+const CommentsRouter = require('./Api/Router/Comment/CommentRouter');
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/Views');
@@ -21,6 +22,7 @@ app.use(bodyParser.json());
 
 //Routes **************************************************************
 app.use('/api/movies', MoviesRouter);
+app.use('/api/comments', CommentsRouter);
 
 con.authenticate()
     .then(() => {

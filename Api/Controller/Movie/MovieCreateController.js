@@ -8,14 +8,14 @@ exports.getMovie = async function cbGetMovie(req, res, next){
     let count = 0, movie, newMovie = undefined, movieDB;
     if (!omdbId && !title) throw new Error('You have to pass at least on value: title or odb id');
     if (omdbId && !validator.isAlphanumeric(omdbId)) throw new Error('omdb id should have only letters and numbers');
-    if (title && !validator.isAlphanumeric(title)) throw new Error('title should have only letters and numbers');  
+    if (title && !validator.isAscii(title)) throw new Error('title should have only ASCII characters');  
     
     if(omdbId !== '') {
         count = await MovieService.movieReadDB.getMovieCountByOmbdId(omdbId);
     } else if (title !== '') {
         count = await MovieService.movieReadDB.getMovieCountByTitle(title);
     }
-    console.log(count.count);
+
     if(count.count > 0) {
         if(omdbId) {
             movieDB = await MovieService.movieReadDB.getMovieByomdbId(omdbId);
@@ -30,6 +30,8 @@ exports.getMovie = async function cbGetMovie(req, res, next){
         } else {
             movie = await MovieService.movieRead.getMovieFromOmdbByTitle(title);
         }
+        if (movie.Response === 'False') throw new Error('Movie not found!');
+        
         const movieData = {
             title: movie.Title,
             omdb_id: movie.imdbID,
@@ -39,9 +41,10 @@ exports.getMovie = async function cbGetMovie(req, res, next){
     }
     if(newMovie) {
         movie = JSON.parse(newMovie.data_string);
+        movie.movie_id = newMovie.movie_id;
     }
 
-    res.status(200);
+    res.status(201);
     const response = {
         data: movie
     }

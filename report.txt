@@ -1,0 +1,76 @@
+
+
+  Start
+Start testing app...
+    Movies Router
+      DELETE ALL FROM movies
+        ✓ It should remove all from comments table
+      /POST movies
+        ✓ It should not POST movie without omdbId and title (56ms)
+      /POST movies
+Connection has been established successfully
+        ✓ It should not POST movie with diffrent then alphanumeric characters in omdbId
+      /POST movies
+        ✓ It should not POST movie if app does not find it in OMDB (59ms)
+      /POST movies
+{ title: 'Snatch',
+  omdb_id: 'tt0208092',
+  data_string:
+   '{"Title":"Snatch","Year":"2000","Rated":"R","Released":"19 Jan 2001","Runtime":"102 min","Genre":"Comedy, Crime","Director":"Guy Ritchie","Writer":"Guy Ritchie","Actors":"Benicio Del Toro, Dennis Farina, Vinnie Jones, Brad Pitt","Plot":"Unscrupulous boxing promoters, violent bookmakers, a Russian gangster, incompetent amateur robbers and supposedly Jewish jewelers fight to track down a priceless stolen diamond.","Language":"English, Russian","Country":"UK, USA","Awards":"4 wins & 6 nominations.","Poster":"https://m.media-amazon.com/images/M/MV5BMTA2NDYxOGYtYjU1Mi00Y2QzLTgxMTQtMWI1MGI0ZGQ5MmU4XkEyXkFqcGdeQXVyNDk3NzU2MTQ@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"8.3/10"},{"Source":"Rotten Tomatoes","Value":"73%"},{"Source":"Metacritic","Value":"55/100"}],"Metascore":"55","imdbRating":"8.3","imdbVotes":"715,073","imdbID":"tt0208092","Type":"movie","DVD":"03 Jul 2001","BoxOffice":"$30,093,107","Production":"Columbia Pictures","Website":"N/A","Response":"True"}' }
+{ data:
+   { Title: 'Snatch',
+     Year: '2000',
+     Rated: 'R',
+     Released: '19 Jan 2001',
+     Runtime: '102 min',
+     Genre: 'Comedy, Crime',
+     Director: 'Guy Ritchie',
+     Writer: 'Guy Ritchie',
+     Actors: 'Benicio Del Toro, Dennis Farina, Vinnie Jones, Brad Pitt',
+     Plot:
+      'Unscrupulous boxing promoters, violent bookmakers, a Russian gangster, incompetent amateur robbers and supposedly Jewish jewelers fight to track down a priceless stolen diamond.',
+     Language: 'English, Russian',
+     Country: 'UK, USA',
+     Awards: '4 wins & 6 nominations.',
+     Poster:
+      'https://m.media-amazon.com/images/M/MV5BMTA2NDYxOGYtYjU1Mi00Y2QzLTgxMTQtMWI1MGI0ZGQ5MmU4XkEyXkFqcGdeQXVyNDk3NzU2MTQ@._V1_SX300.jpg',
+     Ratings: [ [Object], [Object], [Object] ],
+     Metascore: '55',
+     imdbRating: '8.3',
+     imdbVotes: '715,073',
+     imdbID: 'tt0208092',
+     Type: 'movie',
+     DVD: '03 Jul 2001',
+     BoxOffice: '$30,093,107',
+     Production: 'Columbia Pictures',
+     Website: 'N/A',
+     Response: 'True',
+     movie_id: 27 } }
+        ✓ It should POST movie with title or omdbId (94ms)
+      /GET movies
+        ✓ It should GET all movies from database
+    Comment Router
+      DELETE ALL FROM comments
+        ✓ It should remove all from comments table
+      /POST comment
+        ✓ It should not POST comment without odmb_id and title
+      /POST comment
+        ✓ It should not POST comment without comment
+      /POST comment
+        ✓ It should not POST comment with diffrent then alphanumeric characters in omdbId
+      /POST comment
+        ✓ It should not POST comment if it does not exist in database
+      /POST comment
+        ✓ It should POST comment with comment and title or comment and omdb_id
+      /GET comment
+        ✓ It should GET all comments from database
+    Delete Dummy Data
+      DELETE ALL FROM comments
+        ✓ It should remove all from comments table
+      DELETE ALL FROM movies
+        ✓ It should remove all from comments table
+End of app test
+
+
+  15 passing (333ms)
+

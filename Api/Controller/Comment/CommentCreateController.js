@@ -11,7 +11,7 @@ exports.addComment = async function cbGetMovie(req, res, next){
     if (!comment) throw new Error('You have to pass a comment');
     if (!omdbId && !title) throw new Error('You have to pass at least on value: title or odb id');
     if (omdbId && !validator.isAlphanumeric(omdbId)) throw new Error('omdb id should have only letters and numbers');
-    if (title && !validator.isAlphanumeric(title)) throw new Error('title should have only letters and numbers');  
+    if (title && !validator.isAscii(title)) throw new Error('title should have only ASCII characters');  
        
     if(omdbId !== '') {
         count = await MovieService.movieReadDB.getMovieCountByOmbdId(omdbId);
@@ -34,7 +34,7 @@ exports.addComment = async function cbGetMovie(req, res, next){
     }
     const newComment = await CommentService.commentCreateDB.createComment(commentData);
 
-    res.status(200);
+    res.status(201);
     const response = {
         data: newComment
     }

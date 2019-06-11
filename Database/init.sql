@@ -1,8 +1,9 @@
 CREATE TABLE movies(
     movie_id serial,
     title character varying,
-    imbd_id character varying,
+    omdb_id character varying,
     created_at timestamp without time zone,
+    data_string text,
     primary key(movie_id)
 );
 

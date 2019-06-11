@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Welcome in MoviesApp</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <style>
+      .chat_container { width: 300px; }
+      .chat__window { width: 100%; height: 300px; border: 1px solid rgb(13, 8, 63); border-radius: 5px; }
+      .chat__h1 { margin-left: 80px; }
+      .chat__output { width: 100%; height: 100%; overflow-y: auto; }
+      .chat__fb { border-bottom: 1px solid rgb(163, 162, 162); color: rgb(163, 162, 162); }
+      .chat__input { width: 100%; padding: 5px 5px; box-sizing: border-box; margin: 2px 0; border: none;
+        border-bottom: 1px solid rgb(0, 0, 0); }
+      .chat__btn { margin-top: 15px; width: 100%; border-radius: 5px; padding: 3px; box-sizing: border-box;
+        background: white; border: 1px solid green; color: green; cursor: pointer; }
+      .chat__btn:hover { background: green;  color: white; }
+      .chat__homepage { text-decoration: none; color: black; }
+      .chat__homepage:hover { color: rgb(163, 162, 162);;}
+    </style>
+  </head>
+  
+  <body>
+    <a href='/' class="chat__homepage">Homepage</a>
+    <h1 class="chat__h1">Movie chat!</h1>
+    <div id="movies-chat" class="chat_container">
+        <div id="fb" class="chat__fb"></div>
+        <div id="chat-window" class="chat__window">
+            <div id="output" class="chat__output"></div>   
+        </div>
+        <input id="author" type="text" placeholder="Your name" class="chat__input" />
+        <input id="message" type="text" placeholder="What you think?" class="chat__input" />
+        <button id="send" class="chat__btn">Send it!</button>
+    </div>
+    <script>
+      var socket = io.connect('http://localhost:8080');
+
+      var message = document.getElementById('message'),
+      author = document.getElementById('author'),
+        btn = document.getElementById('send'),
+        output = document.getElementById('output'),
+        fb  = document.getElementById('fb');
+
+        btn.addEventListener('click', function() {
+          socket.emit('send-msg', {
+              message: message.value,
+              author: author.value
+          });
+        });
+
+        message.addEventListener('keypress', function() {
+          socket.emit('typing-msg', author.value);
+        });
+
+        socket.on('send-msg', function(data){
+          output.innerHTML += '<p><strong>'+data.author+': </strong>'+ data.message + '</p>';
+          fb.innerHTML = '';
+        });
+
+        socket.on('typing-msg', function(data) {
+          fb.innerHTML = '<p><em>' + data + ' is typing a message...</em></p>';
+        });
+    </script>
+  </body>
+</html>
